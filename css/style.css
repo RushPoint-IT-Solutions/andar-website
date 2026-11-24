@@ -1913,3 +1913,267 @@ html:not(.js) section h2::after {
 .form .bad .invalid-feedback {
   display: block;
 }
+
+/* Mobile layout: keep actions, supporting details and floating UI clear. */
+@media (max-width: 600px) {
+  html {
+    scroll-padding-top: calc(72px + env(safe-area-inset-top, 0px));
+  }
+
+  .container {
+    padding-inline: clamp(16px, 5vw, 22px);
+  }
+
+  .hd .container {
+    min-height: 70px;
+  }
+
+  .logo img {
+    height: 40px;
+  }
+
+  .burger {
+    flex: none;
+    width: 44px;
+    height: 44px;
+  }
+
+  .site-nav {
+    max-height: calc(100dvh - 70px - env(safe-area-inset-top, 0px));
+    overflow-y: auto;
+    padding-inline: clamp(16px, 5vw, 22px);
+  }
+
+  .hero {
+    padding-top: 34px;
+  }
+
+  .hero .container {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 22px;
+  }
+
+  .hero .live {
+    max-width: 100%;
+    line-height: 1.35;
+  }
+
+  .hero .live i {
+    animation: none;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.8rem, 7.7vw, 2.125rem);
+    line-height: 1.13;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+
+  .hero-img {
+    min-width: 0;
+    width: min(100%, 350px);
+    margin: 2px auto 4px;
+  }
+
+  .hero .cta {
+    align-items: center;
+    gap: 4px;
+  }
+
+  .hero .cta .btn {
+    min-height: 56px;
+    padding-inline: 12px;
+    font-size: 0.95rem;
+  }
+
+  .hero .cta .btn-o {
+    width: auto;
+    min-height: 44px;
+    padding: 8px 12px;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .hero .cta .btn-o::after {
+    content: "\2192";
+    margin-left: 2px;
+    font-size: 1.2rem;
+  }
+
+  .hero .cta-note {
+    margin: -12px 0 12px;
+    line-height: 1.4;
+  }
+
+  .hero .ticks {
+    display: none;
+  }
+
+  .hero-wave {
+    height: 36px;
+  }
+
+  main > section:not(.hero) {
+    padding-block: 56px;
+  }
+
+  section h2,
+  .story h2 {
+    font-size: clamp(1.75rem, 7vw, 2.15rem);
+  }
+
+  .lead {
+    font-size: 1rem;
+  }
+
+  .service-card,
+  .step {
+    padding: 1.4rem;
+  }
+
+  .story p {
+    font-size: 0.95rem;
+    line-height: 1.75;
+  }
+
+  .story p + p {
+    margin-top: 1.25rem;
+  }
+
+  .story strong {
+    font-weight: 600;
+  }
+
+  .story .pill {
+    font-size: 1rem;
+    padding: 0.75rem 1.2rem;
+  }
+
+  .story-gallery .c1 {
+    height: 190px;
+  }
+
+  .story-gallery .c2,
+  .story-gallery .c3,
+  .story-gallery .c4,
+  .story-gallery .c5 {
+    grid-column: span 6;
+    height: 125px;
+  }
+
+  .band .container {
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .band .container > div,
+  .band .btn {
+    width: 100%;
+  }
+
+  .band .num {
+    font-size: clamp(1.7rem, 8vw, 2.2rem);
+  }
+
+  .form {
+    padding: 1.35rem;
+  }
+
+  .cl li:nth-child(n + 2) {
+    display: none;
+  }
+
+  footer {
+    padding-block: 48px 88px;
+  }
+
+  footer .fgr > .col-6 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero .live i {
+    animation: none;
+  }
+
+  .hero .cta .btn-y::after {
+    display: none;
+  }
+
+  .cb {
+    right: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .cb-fab {
+    width: 56px;
+    min-height: 56px;
+    justify-content: center;
+    gap: 0;
+    padding: 3px;
+  }
+
+  .cb-ico {
+    width: 46px;
+    height: 46px;
+  }
+
+  .cb-lbl,
+  .cb-tip {
+    display: none;
+  }
+
+  .cb.primary-in-view:not(.open) .cb-fab {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .hero {
+    padding-top: 2.5rem;
+  }
+
+  .hero .container {
+    row-gap: 1.5rem;
+  }
+
+  .hero-img {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .hero .cta {
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .hero .cta .btn-y {
+    max-width: 420px;
+  }
+
+  .hero .cta .btn-o {
+    width: auto;
+    min-height: 44px;
+    padding: 8px 12px;
+    border: 0;
+    background: transparent;
+  }
+
+  .hero .cta .btn-o::after {
+    content: "\2192";
+    margin-left: 2px;
+    font-size: 1.2rem;
+  }
+
+  .hero .cta-note {
+    margin: -14px 0 12px;
+  }
+
+  .hero .ticks {
+    display: none;
+  }
+}

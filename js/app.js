@@ -253,6 +253,20 @@ addEventListener(
     form = $("#cb-f"),
     inp = $("#cb-i"),
     tip = $("#cb-tip");
+  // Keep the main help actions clear of the floating chat launcher.
+  if ("IntersectionObserver" in window) {
+    const visibleActions = new Set();
+    const actionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) visibleActions.add(entry.target);
+        else visibleActions.delete(entry.target);
+      });
+      cb.classList.toggle("primary-in-view", visibleActions.size > 0);
+    });
+    [$(".hero"), $("#contact .form")].forEach((el) =>
+      actionObserver.observe(el),
+    );
+  }
   const CALL = { t: "Call 0919 170 0062", href: "tel:+639191700062" };
   const FORM = { t: "Request help online", go: "#contact" };
   const KB = [
