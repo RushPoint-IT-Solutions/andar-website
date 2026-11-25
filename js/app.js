@@ -129,6 +129,52 @@ addEventListener(
   { passive: true },
 );
 
+/* testimonial carousel */
+(() => {
+  const track = document.querySelector("#testimonial-track");
+  const prev = document.querySelector("#testimonials-prev");
+  const next = document.querySelector("#testimonials-next");
+  const status = document.querySelector("#testimonial-status");
+  if (!track || !prev || !next || !status) return;
+
+  const cards = [...track.children];
+  let start = 0;
+  let timer;
+  const visible = () => (innerWidth <= 600 ? 1 : innerWidth <= 900 ? 2 : 3);
+  const update = () => {
+    const count = visible();
+    const maxStart = Math.max(0, cards.length - count);
+    start = Math.min(start, maxStart);
+    const cardWidth = cards[0].getBoundingClientRect().width;
+    const gap = parseFloat(getComputedStyle(track).gap) || 0;
+    track.style.transform = `translateX(-${start * (cardWidth + gap)}px)`;
+    status.textContent = `${start + 1}–${Math.min(start + count, cards.length)} of ${cards.length}`;
+  };
+  prev.addEventListener("click", () => {
+    start = start <= 0 ? Math.max(0, cards.length - visible()) : start - 1;
+    update();
+    restart();
+  });
+  next.addEventListener("click", () => {
+    start = start >= cards.length - visible() ? 0 : start + 1;
+    update();
+    restart();
+  });
+  addEventListener("resize", update);
+  const advance = () => {
+    start = start >= cards.length - visible() ? 0 : start + 1;
+    update();
+  };
+  const stop = () => clearInterval(timer);
+  const restart = () => {
+    stop();
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches)
+      timer = setInterval(advance, 3500);
+  };
+  update();
+  restart();
+})();
+
 /* the route fills in yellow behind a glowing dot and lights each icon as it arrives */
 (() => {
   const fs = document.querySelector(".fs");

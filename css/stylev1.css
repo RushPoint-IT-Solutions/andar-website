@@ -194,7 +194,6 @@ header.hd {
   top: env(safe-area-inset-top, 0px);
   z-index: 50;
   background: var(--ink);
-  border-bottom: 1px solid #000;
 }
 .hd .container {
   display: flex;
@@ -497,6 +496,9 @@ header.hd {
 .why-h .lead {
   margin-inline: auto;
 }
+.fs {
+  position: relative;
+}
 .f {
   position: relative;
   text-align: center;
@@ -527,6 +529,165 @@ header.hd {
   font-size: 0.9rem;
   margin: 0.5rem auto 0;
   max-width: 24ch;
+}
+
+/* testimonials */
+.post-why-flow {
+  display: flex;
+  flex-direction: column;
+}
+.how-it-works {
+  order: 1;
+  padding-bottom: clamp(2.5rem, 4vw, 3.5rem);
+}
+.testimonials {
+  order: 2;
+  color-scheme: light;
+  --tx: #1a1a1a;
+  --mu: #5b5b5b;
+  --bd: #e6e6e6;
+  --card: #ffffff;
+  background: #f5f5f4;
+  border-top: 1px solid #e8e5de;
+  border-bottom: 1px solid #e8e5de;
+  overflow: hidden;
+}
+.testimonials-head {
+  max-width: 680px;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+.testimonials-head .eyebrow {
+  color: #9a7600;
+}
+.testimonials-head h2::after {
+  margin-inline: auto;
+  transform-origin: center;
+}
+.testimonial-viewport {
+  overflow: hidden;
+  padding: 0.75rem 0;
+}
+.testimonial-track {
+  display: flex;
+  gap: 1.25rem;
+  align-items: stretch;
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+.testimonial-card {
+  flex: 0 0 calc((100% - 2.5rem) / 3);
+  height: 460px;
+  min-height: 460px;
+  padding: 1.55rem;
+  background: #fcfcfc;
+  border: 1px solid #e7e3db;
+  border-radius: 18px;
+  box-shadow: 0 12px 28px rgba(20, 20, 20, 0.06);
+  display: flex;
+  flex-direction: column;
+}
+.testimonial-person {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 0.75rem;
+  align-items: center;
+}
+.testimonial-avatar {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--y);
+  color: #111;
+  font-size: 1rem;
+  font-weight: 800;
+}
+.testimonial-person h3 {
+  margin: 0;
+  color: #171717;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+.testimonial-person p {
+  margin: 0.15rem 0 0;
+  color: #6c6c6c;
+  font-size: 0.75rem;
+}
+.testimonial-stars {
+  grid-column: 2;
+  color: #f5b700;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+.testimonial-card blockquote {
+  margin: 1.5rem 0 0;
+  color: #1e1e1e;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  text-align: left;
+}
+.testimonial-card blockquote::before {
+  content: "“";
+  display: block;
+  height: 1.75rem;
+  color: var(--y);
+  font-family: Georgia, serif;
+  font-size: 3.8rem;
+  line-height: 1;
+}
+.testimonial-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.testimonial-controls button {
+  width: 44px;
+  height: 44px;
+  border: 1px solid #d6a900;
+  border-radius: 50%;
+  background: transparent;
+  color: #171717;
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.testimonial-controls button:hover {
+  background: var(--y);
+  transform: translateY(-2px);
+}
+.testimonial-controls button:focus-visible {
+  outline: 3px solid var(--y);
+  outline-offset: 3px;
+}
+.testimonial-controls p {
+  min-width: 4.6rem;
+  margin: 0;
+  color: #666;
+  font-size: 0.82rem;
+  text-align: center;
+}
+@media (max-width: 900px) {
+  .testimonial-card {
+    flex-basis: calc((100% - 1.25rem) / 2);
+    height: 420px;
+    min-height: 420px;
+  }
+}
+@media (max-width: 600px) {
+  .testimonials-head {
+    margin-bottom: 1.6rem;
+  }
+  .testimonial-card {
+    flex-basis: 100%;
+    height: auto;
+    min-height: 0;
+    padding: 1.3rem;
+  }
 }
 
 /* steps + coverage */
@@ -875,6 +1036,10 @@ html:not(.js) section h2::after {
   opacity: 0;
   transition: opacity 0.6s;
   filter: drop-shadow(0 0 7px rgba(255, 196, 0, 0.7));
+}
+.conn .pr,
+.dot {
+  display: none;
 }
 @keyframes march {
   to {
@@ -1480,17 +1645,17 @@ html:not(.js) section h2::after {
   position: absolute;
   right: 0;
   bottom: calc(100% + 0.8rem);
-  width: min(390px, calc(100vw - 2rem));
-  height: auto;
-  max-height: min(580px, calc(100dvh - 8rem));
+  width: min(410px, calc(100vw - 2rem));
+  height: min(590px, calc(100dvh - 7rem));
+  max-height: min(590px, calc(100dvh - 7rem));
   display: flex;
   flex-direction: column;
   background: var(--card);
   color: var(--tx);
   border: 1px solid var(--bd);
-  border-radius: 22px;
+  border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 24px 65px rgba(0, 0, 0, 0.42);
   opacity: 0;
   visibility: hidden;
   transform: translateY(18px) scale(0.96);
@@ -1510,9 +1675,10 @@ html:not(.js) section h2::after {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  padding: 0.9rem 1rem;
+  padding: 1rem;
   background: var(--ink);
   color: #fff;
+  border-bottom: 3px solid var(--y);
 }
 .cb-h > div {
   flex: 1;
@@ -1568,8 +1734,8 @@ html:not(.js) section h2::after {
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
-  padding: 1rem;
-  background: var(--bg2);
+  padding: 1.1rem 1rem;
+  background: #f5f6f8;
   display: flex;
   flex-direction: column;
   gap: 0.7rem;
@@ -1577,11 +1743,11 @@ html:not(.js) section h2::after {
 }
 .cb-b {
   max-width: 86%;
-  padding: 0.7rem 0.95rem;
+  padding: 0.8rem 0.95rem;
   border-radius: 16px 16px 16px 4px;
   background: var(--card);
   border: 1px solid var(--bd);
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   line-height: 1.5;
   animation: rise 0.35s both;
 }
@@ -1672,15 +1838,20 @@ html:not(.js) section h2::after {
 }
 .cb-q {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 0.5rem;
-  padding: 0.65rem 1rem 0.8rem;
-  background: var(--bg2);
+  padding: 0.7rem 1rem 0.85rem;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: none;
+  background: #f5f6f8;
   border-top: 1px solid var(--bd);
 }
+.cb-q::-webkit-scrollbar {
+  display: none;
+}
 .cb-q-title {
-  flex-basis: 100%;
-  margin: 0 0 0.15rem;
+  display: none;
   color: var(--mu);
   font-size: 0.72rem;
   font-weight: 700;
@@ -1689,7 +1860,7 @@ html:not(.js) section h2::after {
 }
 .cb-q button {
   flex: none;
-  min-height: 36px;
+  min-height: 38px;
   padding: 0.4rem 0.8rem;
   border-radius: 999px;
   border: 1.5px solid var(--y);
@@ -1714,7 +1885,7 @@ html:not(.js) section h2::after {
 .cb-f {
   display: flex;
   gap: 0.6rem;
-  padding: 0.7rem 1rem 0.4rem;
+  padding: 0.8rem 1rem 0.45rem;
   background: var(--card);
 }
 .cb-f input {
@@ -1722,7 +1893,7 @@ html:not(.js) section h2::after {
   min-height: 46px;
   border-radius: 999px;
   padding: 0.6rem 1.1rem;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 .cb-f button {
   width: 46px;
@@ -1744,8 +1915,8 @@ html:not(.js) section h2::after {
 }
 .cb-n {
   margin: 0;
-  padding: 0.1rem 1rem 0.7rem;
-  font-size: 0.7rem;
+  padding: 0.15rem 1rem 0.75rem;
+  font-size: 0.73rem;
   color: var(--mu);
   text-align: center;
   background: var(--card);
@@ -1760,8 +1931,8 @@ html:not(.js) section h2::after {
     right: 0;
     bottom: 0;
     width: auto;
-    height: auto;
-    max-height: min(86dvh, 680px);
+    height: min(620px, 78dvh);
+    max-height: min(620px, 78dvh);
     border-radius: 22px 22px 0 0;
     border-width: 1px 0 0;
   }
